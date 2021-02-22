@@ -1,7 +1,7 @@
 function addPlayer(ele) {
     if (event.key === 'Enter'){
         name = ele.value;
-        toAdd = "<tr><td onclick='strikeThrough(this)'>"+name+"</td><th><input></th></tr>";
+        toAdd = "<tr><td onclick='deletePlayer(this)'>"+name+"</td><th><input></th></tr>";
         document.getElementById("Adding").value = "";
         document.getElementById("Nominations").innerHTML += toAdd;
     }
@@ -9,8 +9,10 @@ function addPlayer(ele) {
 
 day = 1;
 
-function strikeThrough(ele) {
-    ele.innerHTML = "<p style='text-decoration: line-through;'>" + ele.innerHTML + "</p>";
+function deletePlayer(ele) {
+    table = document.getElementById("Nominations");
+    i = ele.parentNode.rowIndex;
+    table.deleteRow(i);
 }
 
 function setDay(day){
@@ -21,4 +23,32 @@ function setDay(day){
 function goToNext(){
     document.getElementById("Nominations").innerHTML = "";
     setDay(++day);
+}
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+function startDay(ele){
+    if (day == 1) {
+        time = 60*15;
+    } else {
+        time = 60*10;
+    }
+    console.log(ele.outerHTML);
+    display = document.querySelector('#DayTime');
+    startTimer(time, ele);
 }
