@@ -14,9 +14,8 @@ function addPlayer(ele) {
 }
 
 function deletePlayer(ele) {
-    table = document.getElementById("Nominations");
-    i = ele.parentNode.rowIndex;
-    table.deleteRow(i);
+    i = ele.parentNode.parentNode;
+    ele.parentNode.parentNode.remove(i);
 }
 
 function setDay(day){
@@ -29,12 +28,14 @@ function goToNext(){
     setDay(++day);
     document.getElementById("DayTime").outerHTML = '<span id="DayTime" onclick="startDay(this)">10:00</span>';
     document.getElementById("Defense").outerHTML = '<span id="Defense" onclick="startDefense(this)">02:00</span>';
+    document.getElementById("Fivemin").outerHTML = '<span id="Fivemin" onclick="startFive(this)">05:00</span>';
     for (i=0; i < listOfIntervals.length; i++) {
         window.clearInterval(listOfIntervals[i]);
     }
     listOfIntervals = [];
     pauseday = false;
     pausedefense = false;
+    pausefive = false;
 }
 
 function startTimer(duration, display, ele) {

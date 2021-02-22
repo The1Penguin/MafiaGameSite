@@ -1,7 +1,9 @@
 body {
     display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 40px;
+    grid-gap: 10px 10px;
 }
-
 
 #votes {
     width: 20px;
@@ -11,11 +13,38 @@ body {
   width: 60%;
 }
 
+#knapp {
+    grid-column:2;
+}
+
 #Day {
-    font-size: 70px;
+    font-size: 50px;
+    text-align: center;
 }
 
 #timers{
     display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px 10px;
 }
 
+#DayTimer {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+#DefenseTimer {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+#FiveTimer {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#people {
+    grid-row : 1 / last-line;
+}
+
+span {
+    font-size: 22px;
+}
