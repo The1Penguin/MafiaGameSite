@@ -10,7 +10,7 @@ body {
 }
 
 #Nominations {
-  width: 60%;
+  width: 100%;
 }
 
 #knapp {
@@ -47,4 +47,13 @@ body {
 
 span {
     font-size: 22px;
+}
+
+#fem {
+    text-align: center;
+}
+
+#FiveminCheck{
+    display: flex;
+    justify-content: center;
 }
