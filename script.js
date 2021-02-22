@@ -25,9 +25,9 @@ function goToNext(){
     setDay(++day);
 }
 
-function startTimer(duration, display) {
+function startTimer(duration, display, ele, pause) {
     var timer = duration, minutes, seconds;
-    setInterval(function () {
+    let intervalId = setInterval(function () {
         if (!pauseday){
             minutes = parseInt(timer / 60, 10)
             seconds = parseInt(timer % 60, 10);
@@ -38,7 +38,8 @@ function startTimer(duration, display) {
             display.textContent = minutes + ":" + seconds;
 
             if (--timer < 0) {
-                timer = duration;
+                window.clearInterval(intervalId);
+                display.outerHTML = ele.outerHTML;
             }
         }
     }, 1000);
@@ -52,11 +53,24 @@ function startDay(ele){
     }
     ele.outerHTML = '<span id="DayTime" onclick="pauseDay()">15:00</span>';
     display = document.querySelector('#DayTime');
-    startTimer(time, display);
+    startTimer(time, display, ele);
 }
 
+function startDefense(ele){
+    time = 2*60
+    ele.outerHTML = '<span id="Defense" onclick="pauseDefense()">02:00</span>';
+    display = document.querySelector('#Defense');
+    startTimer(time, display, ele);
+}
+
+
 pauseday = false
+pausedefense = false
 
 function pauseDay(){
     pauseday = !pauseday;
+}
+
+function pauseDefense(){
+    pausedefense = !pausedefense;
 }
