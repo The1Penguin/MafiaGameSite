@@ -7,7 +7,7 @@ listOfIntervals = [];
 function addPlayer(ele) {
     if (event.key === 'Enter'){
         name = ele.value;
-        toAdd = "<tr><td onclick='deletePlayer(this)'>"+name+"</td><th><input id='votes'></th></tr>";
+        toAdd = "<tr><td class='pointer' onclick='deletePlayer(this)'>"+name+"</td><th><input id='votes'></th></tr>";
         document.getElementById("Adding").value = "";
         document.getElementById("Nominations").innerHTML += toAdd;
     }
@@ -26,9 +26,9 @@ function setDay(day){
 function goToNext(){
     document.getElementById("Nominations").innerHTML = "";
     setDay(++day);
-    document.getElementById("DayTime").outerHTML = '<span id="DayTime" onclick="startDay(this)">10:00</span>';
-    document.getElementById("Defense").outerHTML = '<span id="Defense" onclick="startDefense(this)">02:00</span>';
-    document.getElementById("Fivemin").outerHTML = '<span id="Fivemin" onclick="startFive(this)">05:00</span>';
+    document.getElementById("DayTime").outerHTML = '<span id="DayTime" class="pointer" onclick="startDay(this)">10:00</span>';
+    document.getElementById("Defense").outerHTML = '<span id="Defense" class="pointer" onclick="startDefense(this)">02:00</span>';
+    document.getElementById("Fivemin").outerHTML = '<span id="Fivemin" class="pointer" onclick="startFive(this)">05:00</span>';
     for (i=0; i < listOfIntervals.length; i++) {
         window.clearInterval(listOfIntervals[i]);
     }
@@ -73,7 +73,7 @@ function startDay(ele){
     } else {
         time = 60*10;
     }
-    ele.outerHTML = '<span id="DayTime" onclick="pauseFunc(this)">15:00</span>';
+    ele.outerHTML = '<span id="DayTime" class="pointer" onclick="pauseFunc(this)">15:00</span>';
     display = document.querySelector('#DayTime');
     startTimer(time, display, ele);
 }
@@ -81,14 +81,14 @@ function startDay(ele){
 
 function startDefense(ele){
     time = 2*60
-    ele.outerHTML = '<span id="Defense" onclick="pauseFunc(this)">02:00</span>';
+    ele.outerHTML = '<span id="Defense" class="pointer" onclick="pauseFunc(this)">02:00</span>';
     display = document.querySelector('#Defense');
     startTimer(time, display, ele);
 }
 
 function startFive(ele){
     time = 5*60
-    ele.outerHTML = '<span id="Fivemin" onclick="pauseFunc(this)">05:00</span>';
+    ele.outerHTML = '<span id="Fivemin" class="pointer" onclick="pauseFunc(this)">05:00</span>';
     display = document.querySelector('#Fivemin');
     startTimer(time, display, ele);
 }

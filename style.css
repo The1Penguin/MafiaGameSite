@@ -64,3 +64,7 @@ span {
   left: 10px;
   top: 10px;
 }
+
+.pointer{
+    cursor: pointer;
+}
