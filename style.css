@@ -42,6 +42,7 @@ body {
 }
 
 #people {
+    margin-top: 30px;
     grid-row : 1 / last-line;
 }
 
@@ -56,4 +57,10 @@ span {
 #FiveminCheck{
     display: flex;
     justify-content: center;
+}
+
+#slump {
+     position: absolute;
+  left: 10px;
+  top: 10px;
 }
