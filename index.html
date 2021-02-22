@@ -7,13 +7,16 @@
         <script src="script.js" async=""></script>
     </head>
 <body>
-    <table id="Nominations">
-    </table>
-    <input type="text" id="Adding" onkeydown="addPlayer(this)"/>
-    <p id="Day"> Dag 1</p>
+    <div id="people">
+        <table id="Nominations">
+        </table>
+        <input type="text" id="Adding" placeholder="Player nominated" onkeydown="addPlayer(this)"/>
+    </div>
     <div id="timers">
+        <p id="Day"> Dag 1</p>
         <span id="DayTime" onclick="startDay(this)">15:00</span>
         <span id="Defense" onclick="startDefense(this)">02:00</span>
+        <span id="Fivemin" onclick="startFive(this)">05:00</span>
     </div>
     <button type="button" onclick="goToNext()">Gå till nästa dag</button> 
 </body>

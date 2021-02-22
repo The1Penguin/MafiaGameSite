@@ -1,12 +1,13 @@
 day = 1;
-pauseday = false
-pausedefense = false
-listOfIntervals = []
+pauseday = false;
+pausedefense = false;
+pausefive = false;
+listOfIntervals = [];
 
 function addPlayer(ele) {
     if (event.key === 'Enter'){
         name = ele.value;
-        toAdd = "<tr><td onclick='deletePlayer(this)'>"+name+"</td><th><input></th></tr>";
+        toAdd = "<tr><td onclick='deletePlayer(this)'>"+name+"</td><th><input id='votes'></th></tr>";
         document.getElementById("Adding").value = "";
         document.getElementById("Nominations").innerHTML += toAdd;
     }
@@ -41,6 +42,8 @@ function startTimer(duration, display, ele) {
     let intervalId = setInterval(function () {
         if (display.id === 'DayTime'){
             pause = pauseday;
+        } else if (ele.id === 'Fivemin') {
+            pause = pausefive;
         } else {
             pause = pausedefense;
         }
@@ -82,9 +85,18 @@ function startDefense(ele){
     startTimer(time, display, ele);
 }
 
+function startFive(ele){
+    time = 5*60
+    ele.outerHTML = '<span id="Fivemin" onclick="pauseFunc(this)">05:00</span>';
+    display = document.querySelector('#Fivemin');
+    startTimer(time, display, ele);
+}
+
 function pauseFunc(ele){
     if (ele.id === 'DayTime'){
         pauseday = !pauseday;
+    } else if (ele.id === 'Fivemin') {
+        pausefive = !pausefive;
     } else {
         pausedefense = !pausedefense;
     }

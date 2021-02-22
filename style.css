@@ -1,0 +1,21 @@
+body {
+    display: grid;
+}
+
+
+#votes {
+    width: 20px;
+}
+
+#Nominations {
+  width: 60%;
+}
+
+#Day {
+    font-size: 70px;
+}
+
+#timers{
+    display: grid;
+}
+
