@@ -28,5 +28,20 @@ function randomize(){
     } else {
         maffia = Math.ceil(maffia);
     }
-    
+    const numbers = Array(tbodyRowCount).fill().map((_, index) => index);
+    numbers.sort(() => Math.random() - 0.5);
+    console.log(numbers.slice(0, maffia+detective+frimurare));
+    for (i = 0; i < maffia+detective+frimurare; i++){
+        a = numbers[i];
+        var y=table.rows[a].cells;
+        if (i < maffia){
+            y[1].innerHTML="Maffia";
+        } else if (i < maffia + detective) {
+            y[1].innerHTML="Detektiv";
+        } else if ( i < maffia + detective + frimurare) {
+            y[1].innerHTML="Frimurare";
+        } else {
+            break;
+        }
+    }
 }
