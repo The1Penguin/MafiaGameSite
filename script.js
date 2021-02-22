@@ -1,3 +1,8 @@
+day = 1;
+pauseday = false
+pausedefense = false
+listOfIntervals = []
+
 function addPlayer(ele) {
     if (event.key === 'Enter'){
         name = ele.value;
@@ -6,8 +11,6 @@ function addPlayer(ele) {
         document.getElementById("Nominations").innerHTML += toAdd;
     }
 }
-
-day = 1;
 
 function deletePlayer(ele) {
     table = document.getElementById("Nominations");
@@ -23,12 +26,25 @@ function setDay(day){
 function goToNext(){
     document.getElementById("Nominations").innerHTML = "";
     setDay(++day);
+    document.getElementById("DayTime").outerHTML = '<span id="DayTime" onclick="startDay(this)">10:00</span>';
+    document.getElementById("Defense").outerHTML = '<span id="Defense" onclick="startDefense(this)">02:00</span>';
+    for (i=0; i < listOfIntervals.length; i++) {
+        window.clearInterval(listOfIntervals[i]);
+    }
+    listOfIntervals = [];
+    pauseday = false;
+    pausedefense = false;
 }
 
-function startTimer(duration, display, ele, pause) {
+function startTimer(duration, display, ele) {
     var timer = duration, minutes, seconds;
     let intervalId = setInterval(function () {
-        if (!pauseday){
+        if (display.id === 'DayTime'){
+            pause = pauseday;
+        } else {
+            pause = pausedefense;
+        }
+        if (!pause){
             minutes = parseInt(timer / 60, 10)
             seconds = parseInt(timer % 60, 10);
 
@@ -39,10 +55,12 @@ function startTimer(duration, display, ele, pause) {
 
             if (--timer < 0) {
                 window.clearInterval(intervalId);
+                alert("Timer is finished");
                 display.outerHTML = ele.outerHTML;
             }
         }
     }, 1000);
+    listOfIntervals.push(intervalId);
 }
 
 function startDay(ele){
@@ -51,26 +69,23 @@ function startDay(ele){
     } else {
         time = 60*10;
     }
-    ele.outerHTML = '<span id="DayTime" onclick="pauseDay()">15:00</span>';
+    ele.outerHTML = '<span id="DayTime" onclick="pauseFunc(this)">15:00</span>';
     display = document.querySelector('#DayTime');
     startTimer(time, display, ele);
 }
 
+
 function startDefense(ele){
     time = 2*60
-    ele.outerHTML = '<span id="Defense" onclick="pauseDefense()">02:00</span>';
+    ele.outerHTML = '<span id="Defense" onclick="pauseFunc(this)">02:00</span>';
     display = document.querySelector('#Defense');
     startTimer(time, display, ele);
 }
 
-
-pauseday = false
-pausedefense = false
-
-function pauseDay(){
-    pauseday = !pauseday;
-}
-
-function pauseDefense(){
-    pausedefense = !pausedefense;
+function pauseFunc(ele){
+    if (ele.id === 'DayTime'){
+        pauseday = !pauseday;
+    } else {
+        pausedefense = !pausedefense;
+    }
 }
