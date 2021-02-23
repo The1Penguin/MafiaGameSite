@@ -12,10 +12,19 @@ function deletePlayer(ele) {
     ele.parentNode.parentNode.remove(i);
 }
 
+function clear(table){
+    var tbodyRowCount = table.rows.length;
+    for (i=0; i < tbodyRowCount; i++){
+        var y=table.rows[i].cells;
+        y[1].innerHTML="";
+    }
+}
+
 function randomize(){
     table = document.getElementById("Nominations");
     var frimurare = 0, maffia = 0, detective = 0;
     var tbodyRowCount = table.rows.length;
+    clear(table)
     if (tbodyRowCount < 9 || tbodyRowCount > 10){
         frimurare = 2;
     }
@@ -28,9 +37,8 @@ function randomize(){
     } else {
         maffia = Math.ceil(maffia);
     }
-    const numbers = Array(tbodyRowCount).fill().map((_, index) => index);
-    numbers.sort(() => Math.random() - 0.5);
-    console.log(numbers.slice(0, maffia+detective+frimurare));
+    numbers = Array(tbodyRowCount).fill().map((_, index) => index);
+    numbers = shuffle(numbers);
     for (i = 0; i < maffia+detective+frimurare; i++){
         a = numbers[i];
         var y=table.rows[a].cells;
@@ -44,4 +52,15 @@ function randomize(){
             break;
         }
     }
+}
+
+function shuffle(arr){
+    var i = arr.length, k , temp;
+    while(--i > 0){
+      k = Math.floor(Math.random() * (i+1));
+      temp = arr[k];
+      arr[k] = arr[i];
+      arr[i] = temp;
+   }
+    return arr
 }
