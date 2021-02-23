@@ -1,7 +1,7 @@
 function addPlayer(ele) {
     if (event.key === 'Enter'){
         name = ele.value;
-        toAdd = "<tr><td class='pointer' onclick='deletePlayer(this)'>"+name+"</td><th></th></tr>";
+        toAdd = "<tr><td class='pointer' id='Name' onclick='deletePlayer(this)'>"+name+"</td><th></th></tr>";
         document.getElementById("Adding").value = "";
         document.getElementById("Nominations").innerHTML += toAdd;
     }
