@@ -26,7 +26,15 @@ function setDay(day){
 function goToNext(){
     document.getElementById("Nominations").innerHTML = "";
     setDay(++day);
-    document.getElementById("DayTime").outerHTML = '<span id="DayTime" class="pointer" onclick="startDay(this)">10:00</span>';
+    resetTimers();
+    }
+
+function resetTimers(){
+    tid = "10:00";
+    if (day == 1){
+        tid = "15:00";
+    }
+    document.getElementById("DayTime").outerHTML = '<span id="DayTime" class="pointer" onclick="startDay(this)">'+tid+'</span>';
     document.getElementById("Defense").outerHTML = '<span id="Defense" class="pointer" onclick="startDefense(this)">02:00</span>';
     document.getElementById("Fivemin").outerHTML = '<span id="Fivemin" class="pointer" onclick="startFive(this)">05:00</span>';
     for (i=0; i < listOfIntervals.length; i++) {
